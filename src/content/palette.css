@@ -1,0 +1,74 @@
+.__palette-container {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999999999;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: 0.05s ease-in-out;
+  pointer-events: none;
+}
+
+.__palette {
+  height: 40px;
+  width: 100%;
+  max-width: 430px;
+  margin: 10vh auto 0;
+  border-radius: 2px;
+}
+
+.__palette > .__palette-closed {
+  display: none;
+}
+
+.__palette-input {
+  all: unset;
+  color: white !important;
+  font-family: Verdana !important;
+  font-size: 18px !important;
+  box-sizing: border-box !important;
+  padding: 0px 8px !important;
+  line-height: 40px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  pointer-events: initial;
+}
+
+.__palette-closed {
+  opacity: 0;
+}
+
+.__palette-options {
+  width: 100%;
+  max-width: 430px;
+  color: white;
+  margin: 8px auto;
+  box-sizing: border-box;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: initial;
+}
+
+.__palette-option {
+  font-size: 14px;
+  list-style: none;
+  color: white;
+  padding: 6px 8px;
+  margin-left: 0;
+}
+
+.__palette-option[selected="true"] {
+  backdrop-filter: brightness(80%);
+}
+
+.__palette-option:hover {
+  backdrop-filter: brightness(150%);
+}
+
+.__palette_frost {
+  backdrop-filter: blur(7px) brightness(60%);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.4), 0px 8px 10px 1px rgba(0,0,0,0.2), 0px 3px 14px 2px rgba(0,0,0,0.2);
+}

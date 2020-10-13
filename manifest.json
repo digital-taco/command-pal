@@ -1,0 +1,22 @@
+{
+  "name": "Palette Pal",
+  "version": "1.0",
+  "description": "a new PALLLL",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["src/content/palette.css"],
+      "js": ["build/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "scripts": ["build/background.js"]
+  },
+  "manifest_version": 2
+}
