@@ -5,7 +5,9 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "storage"
+    "storage",
+    "sessions",
+    "bookmarks"
   ],
   "content_scripts": [
     {

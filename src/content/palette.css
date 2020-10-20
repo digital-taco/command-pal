@@ -53,9 +53,10 @@
 
 .__palette-option {
   font-size: 14px;
+  line-height: 18px;
   list-style: none;
   color: white;
-  padding: 6px 8px;
+  padding: 0 6px;
   margin-left: 0;
 }
 
