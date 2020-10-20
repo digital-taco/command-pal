@@ -1,6 +1,6 @@
-import commands from './commands'
+import commands from '../commands'
 import sendMessage from './send-message'
-import { Command } from './types'
+import { Command } from '../types'
 
 // eslint-disable-next-line @typescript-eslint/no-extra-semi
 ;(() => {
@@ -42,6 +42,7 @@ import { Command } from './types'
     } else {
       paletteInput.focus()
       paletteContainer.classList.remove('__palette-closed')
+      paletteOptions.innerHTML = ''
     }
     paletteState.open = !paletteState.open
   }
@@ -56,6 +57,7 @@ import { Command } from './types'
       label.toLowerCase().includes(value.toLowerCase())
     )
     return matchingCmds
+    // return matchingCmds.slice(0, 18)
   }
 
   function showOptions() {
@@ -79,8 +81,8 @@ import { Command } from './types'
   }
 
   function handleAction(command: Command) {
-    if (command.message) {
-      sendMessage(command.command)
+    if (command.background) {
+      sendMessage(command.key)
     } else {
       command.handler?.()
     }
