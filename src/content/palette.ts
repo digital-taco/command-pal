@@ -1,6 +1,27 @@
-import commands from '../commands'
+import allCommands from '../commands'
 import sendMessage from './send-message'
 import { Command } from '../types'
+import { pushHistory, getHistory } from './storage';
+
+
+// Sort the commands base on recent history
+// we do this asynchronously to as to make all the commands available when the user boots up
+// the tool. If we run into rendering bugs in the future, we will have to make our whole 
+// UI render async (right now it is sync)
+let commands = allCommands;
+const sortCommands = async () => {
+  const histKeys = await getHistory()
+  const calledCommands = histKeys.map(key => commands.find(cmd => key === cmd.key))
+  const remainingCommands = allCommands.filter(({key}) => !histKeys.includes(key)).sort(({label: a}, {label:b}) => {
+    // sorted alphabetically by label
+    if (a < b) return -1
+    if (a > b) return 1
+    return 0
+  })
+  commands = [...calledCommands, ...remainingCommands]
+}
+sortCommands()
+
 
 // eslint-disable-next-line @typescript-eslint/no-extra-semi
 ;(() => {
@@ -86,6 +107,7 @@ import { Command } from '../types'
     } else {
       command.handler?.()
     }
+    pushHistory(command.key).then(() => sortCommands())
     togglePalette()
   }
 
