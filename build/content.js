@@ -510,10 +510,12 @@ const sortCommands = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 sortCommands();
 (() => {
-    const paletteInput = document.createElement('input');
     const palette = document.createElement('div');
+    const paletteInput = document.createElement('input');
     const paletteContainer = document.createElement('div');
     const paletteOptions = document.createElement('ul');
+    paletteContainer.id = "--command-palette-container--";
+    paletteInput.id = "--command-palette-input--";
     paletteInput.classList.add('__palette-input');
     palette.classList.add('__palette');
     palette.classList.add('__palette_frost');
@@ -573,7 +575,6 @@ sortCommands();
         togglePalette();
     }
     paletteInput.addEventListener('keyup', ({ code }) => {
-        showOptions();
         switch (code) {
             case 'Escape':
                 togglePalette();
@@ -584,6 +585,9 @@ sortCommands();
                 break;
             }
         }
+    });
+    paletteInput.addEventListener('input', () => {
+        showOptions();
     });
     document.addEventListener('click', (e) => {
         if (paletteState.open && !palette.contains(e.target)) {
