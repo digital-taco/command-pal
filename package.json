@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./dev.js",
     "test": "npm run build && jest",
+    "clear-mac-warnings": "sudo codesign --force --deep --sign - node_modules/puppeteer/.local-chromium/mac-*/chrome-mac/Chromium.app",
     "build": "rollup --config ./rollup.config.js",
     "build:watch": "rollup --config ./rollup.config.js --watch"
   },
