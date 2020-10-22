@@ -28,10 +28,14 @@ sortCommands()
   // -----------------------------------------------------------------------------
   // UI Elements
   // -----------------------------------------------------------------------------
-  const paletteInput = document.createElement('input')
   const palette = document.createElement('div')
+  const paletteInput = document.createElement('input')
   const paletteContainer = document.createElement('div')
   const paletteOptions = document.createElement('ul')
+
+  // we need id's for testing purposes
+  paletteContainer.id = "--command-palette-container--"
+  paletteInput.id = "--command-palette-input--"
 
   paletteInput.classList.add('__palette-input')
   palette.classList.add('__palette')
@@ -48,7 +52,7 @@ sortCommands()
   document.body.appendChild(paletteContainer)
 
   // -----------------------------------------------------------------------------
-  // UI Managment
+  // UI Management
   // -----------------------------------------------------------------------------
 
   const paletteState = {
@@ -116,9 +120,6 @@ sortCommands()
   // -----------------------------------------------------------------------------
 
   paletteInput.addEventListener('keyup', ({ code }) => {
-    // update the options list
-    showOptions()
-
     switch (code) {
       // Close the palette
       case 'Escape':
@@ -131,6 +132,11 @@ sortCommands()
         break
       }
     }
+  })
+
+  // update the options list
+  paletteInput.addEventListener('input', () => {
+    showOptions()
   })
 
   // Click away
