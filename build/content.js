@@ -495,6 +495,7 @@ function pushHistory(commandKey) {
     });
 }
 
+let HIGHLIGHTED_CMD_INDEX = 0;
 let commands$1 = commands;
 const sortCommands = () => __awaiter(void 0, void 0, void 0, function* () {
     const histKeys = yield getHistory();
@@ -535,6 +536,7 @@ sortCommands();
             paletteInput.blur();
             paletteContainer.classList.add('__palette-closed');
             paletteInput.value = '';
+            HIGHLIGHTED_CMD_INDEX = 0;
         }
         else {
             paletteInput.focus();
@@ -555,7 +557,7 @@ sortCommands();
             const li = document.createElement('li');
             li.classList.add('__palette-option');
             li.innerText = cmd.label;
-            if (index === 0)
+            if (index === HIGHLIGHTED_CMD_INDEX)
                 li.setAttribute('selected', 'true');
             li.addEventListener('click', () => {
                 handleAction(cmd);
@@ -580,13 +582,27 @@ sortCommands();
                 togglePalette();
                 break;
             case 'Enter': {
-                const [cmd] = getOptions();
-                handleAction(cmd);
+                const cmd = getOptions()[HIGHLIGHTED_CMD_INDEX];
+                cmd && handleAction(cmd);
                 break;
             }
         }
     });
+    paletteInput.addEventListener('keydown', ({ code }) => {
+        if (code.startsWith('Arrow')) {
+            switch (code) {
+                case 'ArrowUp':
+                    HIGHLIGHTED_CMD_INDEX = Math.max(0, HIGHLIGHTED_CMD_INDEX - 1);
+                    break;
+                case 'ArrowDown':
+                    HIGHLIGHTED_CMD_INDEX = Math.min(HIGHLIGHTED_CMD_INDEX + 1, getOptions().length - 1);
+                    break;
+            }
+            showOptions();
+        }
+    });
     paletteInput.addEventListener('input', () => {
+        HIGHLIGHTED_CMD_INDEX = 0;
         showOptions();
     });
     document.addEventListener('click', (e) => {

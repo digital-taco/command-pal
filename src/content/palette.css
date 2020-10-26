@@ -61,12 +61,13 @@
 }
 
 .__palette-option[selected="true"] {
+  backdrop-filter: brightness(150%);
+}
+
+.__palette-option:not([selected="true"]):hover {
   backdrop-filter: brightness(80%);
 }
 
-.__palette-option:hover {
-  backdrop-filter: brightness(150%);
-}
 
 .__palette_frost {
   backdrop-filter: blur(7px) brightness(60%);
