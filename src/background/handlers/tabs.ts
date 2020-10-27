@@ -2,6 +2,12 @@ import { Command } from '../../types'
 
 const classifier = 'tab'
 
+const group = {
+  icon: '🗂',
+  label: 'Tabs',
+  char: '#',
+}
+
 export const close: Command = {
   key: `${classifier}.close`,
   label: 'Close the Current Tab',
@@ -12,6 +18,7 @@ export const close: Command = {
       currentTab && chrome.tabs.remove(currentTab.id)
     })
   },
+  group,
 }
 
 export const duplicate: Command = {
@@ -24,6 +31,7 @@ export const duplicate: Command = {
       currentTab && chrome.tabs.duplicate(currentTab.id)
     })
   },
+  group,
 }
 
 export const open: Command = {
@@ -33,6 +41,7 @@ export const open: Command = {
   handler: () => {
     chrome.tabs.create({})
   },
+  group,
 }
 
 export const reload: Command = {
@@ -45,6 +54,7 @@ export const reload: Command = {
       currentTab && chrome.tabs.reload(currentTab.id)
     })
   },
+  group,
 }
 
 export const hardReload: Command = {
@@ -57,6 +67,7 @@ export const hardReload: Command = {
       currentTab && chrome.tabs.reload(currentTab.id, { bypassCache: true })
     })
   },
+  group,
 }
 
 export const restoreTab: Command = {
@@ -68,6 +79,7 @@ export const restoreTab: Command = {
       chrome.sessions.restore(sessions[0].tab.sessionId)
     })
   },
+  group,
 }
 
 export const restoreWindow: Command = {
@@ -79,6 +91,7 @@ export const restoreWindow: Command = {
       chrome.sessions.restore(sessions[0].tab.sessionId)
     })
   },
+  group,
 }
 
 export const mute: Command = {
@@ -88,6 +101,7 @@ export const mute: Command = {
   handler: () => {
     chrome.tabs.update(undefined, { muted: true })
   },
+  group,
 }
 
 export const unmute: Command = {
@@ -97,6 +111,7 @@ export const unmute: Command = {
   handler: () => {
     chrome.tabs.update(undefined, { muted: false })
   },
+  group,
 }
 
 export const pin: Command = {
@@ -106,6 +121,7 @@ export const pin: Command = {
   handler: () => {
     chrome.tabs.update(undefined, { pinned: true })
   },
+  group,
 }
 
 export const unpin: Command = {
@@ -115,6 +131,7 @@ export const unpin: Command = {
   handler: () => {
     chrome.tabs.update(undefined, { pinned: false })
   },
+  group,
 }
 
 export const goBack: Command = {
@@ -124,6 +141,7 @@ export const goBack: Command = {
   handler: () => {
     chrome.tabs.goBack()
   },
+  group,
 }
 
 export const goForward: Command = {
@@ -133,6 +151,7 @@ export const goForward: Command = {
   handler: () => {
     chrome.tabs.goForward()
   },
+  group,
 }
 
 export const zoomIn: Command = {
@@ -144,6 +163,7 @@ export const zoomIn: Command = {
       chrome.tabs.setZoom(zoomFactor + 0.1)
     })
   },
+  group,
 }
 
 export const zoomOut: Command = {
@@ -155,6 +175,7 @@ export const zoomOut: Command = {
       chrome.tabs.setZoom(zoomFactor - 0.1)
     })
   },
+  group,
 }
 
 export const moveToStart: Command = {
@@ -167,6 +188,7 @@ export const moveToStart: Command = {
       chrome.tabs.move(currentTab.id, { index: 0 })
     })
   },
+  group,
 }
 
 export const moveToEnd: Command = {
@@ -179,6 +201,7 @@ export const moveToEnd: Command = {
       chrome.tabs.move(currentTab.id, { index: -1 })
     })
   },
+  group,
 }
 
 export const moveLeft: Command = {
@@ -191,6 +214,7 @@ export const moveLeft: Command = {
       chrome.tabs.move(currentTab.id, { index: currentTab.index - 1 })
     })
   },
+  group,
 }
 
 export const moveRight: Command = {
@@ -203,4 +227,5 @@ export const moveRight: Command = {
       chrome.tabs.move(currentTab.id, { index: currentTab.index + 1 })
     })
   },
+  group,
 }

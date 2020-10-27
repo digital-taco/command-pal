@@ -1,6 +1,11 @@
 'use strict';
 
 const classifier = 'tab';
+const group = {
+    icon: '🗂',
+    label: 'Tabs',
+    char: '#',
+};
 const close = {
     key: `${classifier}.close`,
     label: 'Close the Current Tab',
@@ -11,6 +16,7 @@ const close = {
             currentTab && chrome.tabs.remove(currentTab.id);
         });
     },
+    group,
 };
 const duplicate = {
     key: `${classifier}.duplicate`,
@@ -22,6 +28,7 @@ const duplicate = {
             currentTab && chrome.tabs.duplicate(currentTab.id);
         });
     },
+    group,
 };
 const open = {
     key: `${classifier}.open`,
@@ -30,6 +37,7 @@ const open = {
     handler: () => {
         chrome.tabs.create({});
     },
+    group,
 };
 const reload = {
     key: `${classifier}.reload`,
@@ -41,6 +49,7 @@ const reload = {
             currentTab && chrome.tabs.reload(currentTab.id);
         });
     },
+    group,
 };
 const hardReload = {
     key: `${classifier}.hardReload`,
@@ -52,6 +61,7 @@ const hardReload = {
             currentTab && chrome.tabs.reload(currentTab.id, { bypassCache: true });
         });
     },
+    group,
 };
 const restoreTab = {
     key: `${classifier}.restoreTab`,
@@ -62,6 +72,7 @@ const restoreTab = {
             chrome.sessions.restore(sessions[0].tab.sessionId);
         });
     },
+    group,
 };
 const restoreWindow = {
     key: `${classifier}.restoreWindow`,
@@ -72,6 +83,7 @@ const restoreWindow = {
             chrome.sessions.restore(sessions[0].tab.sessionId);
         });
     },
+    group,
 };
 const mute = {
     key: `${classifier}.mute`,
@@ -80,6 +92,7 @@ const mute = {
     handler: () => {
         chrome.tabs.update(undefined, { muted: true });
     },
+    group,
 };
 const unmute = {
     key: `${classifier}.unmute`,
@@ -88,6 +101,7 @@ const unmute = {
     handler: () => {
         chrome.tabs.update(undefined, { muted: false });
     },
+    group,
 };
 const pin = {
     key: `${classifier}.pin`,
@@ -96,6 +110,7 @@ const pin = {
     handler: () => {
         chrome.tabs.update(undefined, { pinned: true });
     },
+    group,
 };
 const unpin = {
     key: `${classifier}.unpin`,
@@ -104,6 +119,7 @@ const unpin = {
     handler: () => {
         chrome.tabs.update(undefined, { pinned: false });
     },
+    group,
 };
 const goBack = {
     key: `${classifier}.goBack`,
@@ -112,6 +128,7 @@ const goBack = {
     handler: () => {
         chrome.tabs.goBack();
     },
+    group,
 };
 const goForward = {
     key: `${classifier}.goForward`,
@@ -120,6 +137,7 @@ const goForward = {
     handler: () => {
         chrome.tabs.goForward();
     },
+    group,
 };
 const zoomIn = {
     key: `${classifier}.zoomIn`,
@@ -130,6 +148,7 @@ const zoomIn = {
             chrome.tabs.setZoom(zoomFactor + 0.1);
         });
     },
+    group,
 };
 const zoomOut = {
     key: `${classifier}.zoomOut`,
@@ -140,6 +159,7 @@ const zoomOut = {
             chrome.tabs.setZoom(zoomFactor - 0.1);
         });
     },
+    group,
 };
 const moveToStart = {
     key: `${classifier}.moveToStart`,
@@ -151,6 +171,7 @@ const moveToStart = {
             chrome.tabs.move(currentTab.id, { index: 0 });
         });
     },
+    group,
 };
 const moveToEnd = {
     key: `${classifier}.moveToEnd`,
@@ -162,6 +183,7 @@ const moveToEnd = {
             chrome.tabs.move(currentTab.id, { index: -1 });
         });
     },
+    group,
 };
 const moveLeft = {
     key: `${classifier}.moveLeft`,
@@ -173,6 +195,7 @@ const moveLeft = {
             chrome.tabs.move(currentTab.id, { index: currentTab.index - 1 });
         });
     },
+    group,
 };
 const moveRight = {
     key: `${classifier}.moveRight`,
@@ -184,6 +207,7 @@ const moveRight = {
             chrome.tabs.move(currentTab.id, { index: currentTab.index + 1 });
         });
     },
+    group,
 };
 
 var tabs = /*#__PURE__*/Object.freeze({
@@ -210,6 +234,11 @@ var tabs = /*#__PURE__*/Object.freeze({
 });
 
 const classifier$1 = 'window';
+const group$1 = {
+    icon: '⚙️',
+    label: 'Browser',
+    char: '>',
+};
 const open$1 = {
     key: `${classifier$1}.open`,
     label: 'Open New Window',
@@ -217,6 +246,7 @@ const open$1 = {
     handler: () => {
         chrome.windows.create();
     },
+    group: group$1,
 };
 const openIncognito = {
     key: `${classifier$1}.openIncognito`,
@@ -225,6 +255,7 @@ const openIncognito = {
     handler: () => {
         chrome.windows.create({ incognito: true });
     },
+    group: group$1,
 };
 const goFullscreen = {
     key: `${classifier$1}.goFullscreen`,
@@ -237,6 +268,7 @@ const goFullscreen = {
             });
         });
     },
+    group: group$1,
 };
 const minimize = {
     key: `${classifier$1}.minimize`,
@@ -249,6 +281,7 @@ const minimize = {
             });
         });
     },
+    group: group$1,
 };
 
 var windows = /*#__PURE__*/Object.freeze({
@@ -260,6 +293,11 @@ var windows = /*#__PURE__*/Object.freeze({
 });
 
 const classifier$2 = 'chrome';
+const group$2 = {
+    icon: '⚙️',
+    label: 'Browser',
+    char: '>',
+};
 const settings = {
     key: `${classifier$2}.settings`,
     label: 'Open Chrome Settings',
@@ -267,6 +305,7 @@ const settings = {
     handler: () => {
         chrome.tabs.create({ url: 'chrome://settings' });
     },
+    group: group$2,
 };
 const extensions = {
     key: `${classifier$2}.extensions`,
@@ -275,6 +314,7 @@ const extensions = {
     handler: () => {
         chrome.tabs.create({ url: 'chrome://extensions' });
     },
+    group: group$2,
 };
 const version = {
     key: `${classifier$2}.version`,
@@ -283,6 +323,7 @@ const version = {
     handler: () => {
         chrome.tabs.create({ url: 'chrome://version' });
     },
+    group: group$2,
 };
 const history = {
     key: `${classifier$2}.history`,
@@ -291,6 +332,7 @@ const history = {
     handler: () => {
         chrome.tabs.create({ url: 'chrome://history' });
     },
+    group: group$2,
 };
 const downloads = {
     key: `${classifier$2}.downloads`,
@@ -299,6 +341,7 @@ const downloads = {
     handler: () => {
         chrome.tabs.create({ url: 'chrome://downloads' });
     },
+    group: group$2,
 };
 
 var chrome$1 = /*#__PURE__*/Object.freeze({
@@ -311,6 +354,11 @@ var chrome$1 = /*#__PURE__*/Object.freeze({
 });
 
 const classifier$3 = 'videos';
+const group$3 = {
+    icon: '🎥',
+    label: 'Video',
+    char: '%',
+};
 const pauseVideo = {
     key: `${classifier$3}.pauseVideo`,
     label: 'Pause Video',
@@ -320,6 +368,7 @@ const pauseVideo = {
         const video = document.getElementsByTagName('video')[0];
         video === null || video === void 0 ? void 0 : video.pause();
     },
+    group: group$3,
 };
 const playVideo = {
     key: `${classifier$3}.playVideo`,
@@ -330,6 +379,7 @@ const playVideo = {
         const video = document.getElementsByTagName('video')[0];
         video === null || video === void 0 ? void 0 : video.play();
     },
+    group: group$3,
 };
 const openPictureInPicture = {
     key: `${classifier$3}.openPictureInPicture`,
@@ -343,6 +393,7 @@ const openPictureInPicture = {
             video === null || video === void 0 ? void 0 : video.requestPictureInPicture();
         }
     },
+    group: group$3,
 };
 const closePictureInPicture = {
     key: `${classifier$3}.closePictureInPicture`,
@@ -355,6 +406,7 @@ const closePictureInPicture = {
             customDoc.exitPictureInPicture();
         }
     },
+    group: group$3,
 };
 const playSpeed05 = {
     key: `${classifier$3}.playSpeed05`,
@@ -366,6 +418,7 @@ const playSpeed05 = {
         if (video)
             video.playbackRate = 0.5;
     },
+    group: group$3,
 };
 const playSpeed10 = {
     key: `${classifier$3}.playSpeed10`,
@@ -377,6 +430,7 @@ const playSpeed10 = {
         if (video)
             video.playbackRate = 1;
     },
+    group: group$3,
 };
 const playSpeed15 = {
     key: `${classifier$3}.playSpeed15`,
@@ -388,6 +442,7 @@ const playSpeed15 = {
         if (video)
             video.playbackRate = 1.5;
     },
+    group: group$3,
 };
 const playSpeed20 = {
     key: `${classifier$3}.playSpeed20`,
@@ -399,6 +454,7 @@ const playSpeed20 = {
         if (video)
             video.playbackRate = 2;
     },
+    group: group$3,
 };
 const playSpeed25 = {
     key: `${classifier$3}.playSpeed25`,
@@ -410,6 +466,7 @@ const playSpeed25 = {
         if (video)
             video.playbackRate = 2.5;
     },
+    group: group$3,
 };
 const playSpeed30 = {
     key: `${classifier$3}.playSpeed30`,
@@ -421,6 +478,7 @@ const playSpeed30 = {
         if (video)
             video.playbackRate = 3;
     },
+    group: group$3,
 };
 
 var videos = /*#__PURE__*/Object.freeze({

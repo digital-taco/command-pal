@@ -2,6 +2,12 @@ import { Command } from '../../types'
 
 const classifier = 'videos'
 
+const group = {
+  icon: '🎥',
+  label: 'Video',
+  char: '%',
+}
+
 interface VideoElement extends HTMLVideoElement {
   requestPictureInPicture(): Promise<void>
 }
@@ -20,6 +26,7 @@ export const pauseVideo: Command = {
     const video = document.getElementsByTagName('video')[0]
     video?.pause()
   },
+  group,
 }
 
 export const playVideo: Command = {
@@ -31,6 +38,7 @@ export const playVideo: Command = {
     const video = document.getElementsByTagName('video')[0]
     video?.play()
   },
+  group,
 }
 
 export const openPictureInPicture: Command = {
@@ -45,6 +53,7 @@ export const openPictureInPicture: Command = {
       video?.requestPictureInPicture()
     }
   },
+  group,
 }
 
 export const closePictureInPicture: Command = {
@@ -58,6 +67,7 @@ export const closePictureInPicture: Command = {
       customDoc.exitPictureInPicture()
     }
   },
+  group,
 }
 
 // ---------------------------------------------------------------------
@@ -72,6 +82,7 @@ export const playSpeed05: Command = {
     const video = document.getElementsByTagName('video')[0]
     if (video) video.playbackRate = 0.5
   },
+  group,
 }
 export const playSpeed10: Command = {
   key: `${classifier}.playSpeed10`,
@@ -82,6 +93,7 @@ export const playSpeed10: Command = {
     const video = document.getElementsByTagName('video')[0]
     if (video) video.playbackRate = 1
   },
+  group,
 }
 export const playSpeed15: Command = {
   key: `${classifier}.playSpeed15`,
@@ -92,6 +104,7 @@ export const playSpeed15: Command = {
     const video = document.getElementsByTagName('video')[0]
     if (video) video.playbackRate = 1.5
   },
+  group,
 }
 export const playSpeed20: Command = {
   key: `${classifier}.playSpeed20`,
@@ -102,6 +115,7 @@ export const playSpeed20: Command = {
     const video = document.getElementsByTagName('video')[0]
     if (video) video.playbackRate = 2
   },
+  group,
 }
 export const playSpeed25: Command = {
   key: `${classifier}.playSpeed25`,
@@ -112,6 +126,7 @@ export const playSpeed25: Command = {
     const video = document.getElementsByTagName('video')[0]
     if (video) video.playbackRate = 2.5
   },
+  group,
 }
 export const playSpeed30: Command = {
   key: `${classifier}.playSpeed30`,
@@ -122,4 +137,5 @@ export const playSpeed30: Command = {
     const video = document.getElementsByTagName('video')[0]
     if (video) video.playbackRate = 3
   },
+  group,
 }

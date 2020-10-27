@@ -2,6 +2,12 @@ import { Command } from '../../types'
 
 const classifier = 'chrome'
 
+const group = {
+  icon: '⚙️',
+  label: 'Browser',
+  char: '>',
+}
+
 export const settings: Command = {
   key: `${classifier}.settings`,
   label: 'Open Chrome Settings',
@@ -9,6 +15,7 @@ export const settings: Command = {
   handler: () => {
     chrome.tabs.create({ url: 'chrome://settings' })
   },
+  group,
 }
 
 export const extensions: Command = {
@@ -18,6 +25,7 @@ export const extensions: Command = {
   handler: () => {
     chrome.tabs.create({ url: 'chrome://extensions' })
   },
+  group,
 }
 
 export const version: Command = {
@@ -27,6 +35,7 @@ export const version: Command = {
   handler: () => {
     chrome.tabs.create({ url: 'chrome://version' })
   },
+  group,
 }
 
 export const history: Command = {
@@ -36,6 +45,7 @@ export const history: Command = {
   handler: () => {
     chrome.tabs.create({ url: 'chrome://history' })
   },
+  group,
 }
 
 export const downloads: Command = {
@@ -45,4 +55,5 @@ export const downloads: Command = {
   handler: () => {
     chrome.tabs.create({ url: 'chrome://downloads' })
   },
+  group,
 }
