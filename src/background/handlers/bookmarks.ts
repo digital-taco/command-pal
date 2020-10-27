@@ -2,6 +2,12 @@ import { Command } from '../../types'
 
 const classifier = 'bookmarks'
 
+const group = {
+  icon: '🏷',
+  label: 'Bookmarks',
+  char: '$',
+}
+
 export const bookmark: Command = {
   key: `${classifier}.bookmark`,
   label: 'Bookmark Page',
@@ -9,4 +15,5 @@ export const bookmark: Command = {
   handler: () => {
     chrome.windows.create()
   },
+  group,
 }

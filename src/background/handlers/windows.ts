@@ -2,6 +2,12 @@ import { Command } from '../../types'
 
 const classifier = 'window'
 
+const group = {
+  icon: '⚙️',
+  label: 'Browser',
+  char: '>',
+}
+
 export const open: Command = {
   key: `${classifier}.open`,
   label: 'Open New Window',
@@ -9,6 +15,7 @@ export const open: Command = {
   handler: () => {
     chrome.windows.create()
   },
+  group,
 }
 
 export const openIncognito: Command = {
@@ -18,6 +25,7 @@ export const openIncognito: Command = {
   handler: () => {
     chrome.windows.create({ incognito: true })
   },
+  group,
 }
 
 export const goFullscreen: Command = {
@@ -31,6 +39,7 @@ export const goFullscreen: Command = {
       })
     })
   },
+  group,
 }
 
 export const minimize: Command = {
@@ -44,4 +53,5 @@ export const minimize: Command = {
       })
     })
   },
+  group,
 }
